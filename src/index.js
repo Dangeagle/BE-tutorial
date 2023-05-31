@@ -11,7 +11,7 @@ var dbUrl = config.dbUrl;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-pp.use(express.static(path.join(__dirname, "public"))); //  "public" off of current is root
+app.use(express.static("public"));
 const connectDB = async () => {
   try {
     await mongoose.connect(dbUrl, {
@@ -30,7 +30,7 @@ app.use("/authen", authenRouter);
 app.use("/api", carzRouter);
 
 app.get("/", (req, res) => {
-  res.send("index.html", { root: path.join(__dirname, "public") });
+  res.send("index.html");
 });
 
 app.get("*", (req, res) => {
