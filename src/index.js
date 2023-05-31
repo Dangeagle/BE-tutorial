@@ -5,7 +5,10 @@ var carzRouter = require("../src/router/carz.router");
 const mongoose = require("mongoose");
 const port = 3000;
 var config = require("../config");
+const compression = require("compression");
+const path = require("path");
 var dbUrl = config.dbUrl;
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 const connectDB = async () => {
@@ -24,7 +27,9 @@ connectDB();
 
 app.use("/authen", authenRouter);
 app.use("/api", carzRouter);
-app.use(express.static("public"));
+app.use(compression()); // Compress all routes
+
+app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.get("*", (req, res) => {
   res.send("404");
