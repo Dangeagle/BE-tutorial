@@ -11,6 +11,7 @@ var dbUrl = config.dbUrl;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public"));
 const connectDB = async () => {
   try {
     await mongoose.connect(dbUrl, {
