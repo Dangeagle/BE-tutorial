@@ -31,6 +31,8 @@ const LoginMiddleware = async (req, res, next) => {
         res.status(200);
         next();
       }
+    } else {
+      return res.status(400).json({ message: "invalid username or password" });
     }
   } catch (error) {
     return res.status(500).json({ message: "dwqd" });
