@@ -24,7 +24,7 @@ connectDB();
 
 app.use("/authen", authenRouter);
 app.use("/api", carzRouter);
-
+app.use(express.static("public"));
 app.use(express.json());
 app.get("*", (req, res) => {
   res.send("404");
